@@ -91,10 +91,11 @@ as an argument in 'createUploadLink' function : '{ serverFormData: FormData }'`)
                 .then(file => {
                   const { filename, mimetype: contentType } = file
                   const bufs = []
-                  file.stream.on('data', function(buf) {
+                  const fileStream = file.createReadStream()
+                  fileStream.on('data', function(buf) {
                     bufs.push(buf)
                   })
-                  file.stream.on('end', function() {
+                  fileStream.on('end', function() {
                     const buffer = Buffer.concat(bufs)
                     const knownLength = buffer.byteLength
                     options.body.append(index, buffer, {
@@ -104,7 +105,7 @@ as an argument in 'createUploadLink' function : '{ serverFormData: FormData }'`)
                     })
                     resolve()
                   })
-                  file.stream.on('error', reject)
+                  fileStream.on('error', reject)
                 })
                 .catch(reject)
             })
