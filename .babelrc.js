@@ -1,4 +1,6 @@
-const { engines: { node } } = require('./package.json')
+const {
+  engines: { node }
+} = require('./package.json')
 
 module.exports = {
   comments: false,
@@ -19,7 +21,6 @@ module.exports = {
     [
       '@babel/transform-runtime',
       {
-        polyfill: false,
         regenerator: false
       }
     ]
