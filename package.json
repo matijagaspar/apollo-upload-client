@@ -62,7 +62,6 @@
   "scripts": {
     "clean": "rimraf lib",
     "prebuild": "npm run clean",
-    "prepare": "npm run build",
     "build": "run-p build:*",
     "build:main": "babel src -d lib/main",
     "build:module": "cross-env MODULE=true babel src -d lib/module",
